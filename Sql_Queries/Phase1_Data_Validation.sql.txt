@@ -1,0 +1,118 @@
+Question-1  How Many Customers, Restaurants, Menu items, Orders, Order items, Delivery partners, Payments And Ratings?
+
+Query1-:
+
+select 'customers' as table_name, count(*)
+as record_count from food_delivery.customers
+
+UNION ALL
+
+select 'restaurants',
+count(*)  from food_delivery.restaurants
+
+UNION ALL
+
+select 'menuitems',count(*)
+from food_delivery.menuitems
+UNION ALL
+
+select 'orders',count(*)
+from food_delivery.orders
+
+UNION ALL
+
+select 'orderitems',count(*)
+from food_delivery.orderitems
+
+UNION ALL
+
+select 'delivery_partners',count(*)
+from food_delivery.delivery_partners
+
+UNION ALL
+
+select 'payments',count(*)
+from food_delivery.payments
+
+UNION ALL
+
+select 'ratings',count(*)
+from food_delivery.ratings
+
+
+
+Question 2  What percentage of orders  have a payment record,delivery partner and rating?
+
+Query2
+
+select
+round(count(distinct o.order_id) * 100/
+(select count(*) from
+food_delivery.orders)) as order_percent
+from food_delivery.orders as o join
+food_delivery.payments as p on
+o.order_id=p.order_id  join
+food_delivery.delivery_partners as dp
+on o.partner_id=dp.partner_id
+join food_delivery.ratings as r
+on o.order_id=r.order_id
+where o.order_id is not null
+and p.payment_id is not null
+and dp.partner_id is not null
+and r.order_id is not null;
+
+
+Question 3  Are there any orders with missing or inconsistent releated records?
+
+How many orders are missing payment records?
+
+Query
+
+
+select count(*) as missing_orders from
+food_delivery.orders as o left join
+food_delivery.payments as p
+on o.order_id=p.order_id
+where p.order_id is null;
+
+
+2- How many orders are missing customer rating records ?
+ 
+Query
+
+select count(*) as missing_ordersfromrating from
+food_delivery.orders as o
+left join food_delivery.ratings as r
+on o.order_id = r.order_id
+where r.order_id is null;
+
+
+3- How many orders are missing delivery partner records?
+
+Query
+
+select count(o.order_id) as missing_orders
+from food_delivery.orders as o left join
+food_delivery.delivery_partners as dp
+on o.partner_id = dp.partner_id
+where o.order_id is null;
+
+
+Question 4  Are there any duplicate order records in the Orders table?
+
+select *,count(*) as duplicate_orders
+from food_delivery.orders
+group by order_id
+having duplicate_orders>1;
+
+
+Question 5 Are there any duplicate order records in the customers table?
+
+with duplicate_customers as(
+select customer_name,cust_city,cust_phn,
+row_number() over(partition by customer_name,cust_phn,cust_city
+order by customer_id) as rwn from food_delivery.customers
+)
+
+select * from duplicate_customers
+where rwn>1;

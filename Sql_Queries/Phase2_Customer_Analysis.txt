@@ -1,0 +1,120 @@
+Question 1- Who are the the top 10 customers by total number of orders?
+
+Query
+
+with customer_orders as (
+select c.customer_id,c.customer_name ,c.cust_city
+,count(o.order_id) as total_orders
+from food_delivery.customers as c join food_delivery.orders as o
+on c.customer_id=o.customer_id
+group by c.customer_id,c.customer_name
+
+),
+
+ranked_customers as (
+select
+customer_id,customer_name,cust_city,
+total_orders,
+dense_rank() over(order by total_orders desc) as rnk
+from customer_orders
+
+)
+
+select customer_id,customer_name,cust_city,total_orders,rnk
+from ranked_customers where rnk<=10
+order by rnk limit 10;
+
+
+
+Question 2 - Who are the top 3 customers by total spending?
+
+Query
+
+with customer_spending as (
+select c.customer_id,c.customer_name,c.cust_city,
+sum(o.total_amt) as total_spending from
+food_delivery.customers as c join food_delivery.orders as o
+on c.customer_id=o.customer_id
+group by c.customer_id,c.customer_name
+
+),
+ranked_customers as (
+select customer_id,customer_name,cust_city
+,total_spending,
+row_number() over(order by total_spending desc ) as rnk
+from customer_spending
+
+)
+select customer_id,customer_name,cust_city,total_spending,rnk
+from ranked_customers
+where rnk<=3;
+
+
+
+Question 3-  Find out he customers from noida whose average order value is more than 1500?
+
+select c.customer_id,c.customer_name
+,c.cust_city,avg(o.total_amt) as
+avg_order_value
+from food_delivery.customers as c join
+food_delivery.orders  as o
+on c.customer_id=o.customer_id
+where c.cust_city='noida'
+group by c.customer_id
+having avg_order_value >1500;
+
+
+
+Question 4- Which Customers are high value customers?
+(As whose total spending is above than overall average customer spending)
+
+Query
+
+with customer_spending as(
+select c.customer_id,c.customer_name,
+sum(o.total_amt) as total_spending
+from food_delivery.customers as c
+join food_delivery.orders as o
+on c.customer_id=o.customer_id
+group by customer_id
+
+),
+
+customer_average_spending as(
+select
+avg(total_spending) as overall_avg_customerspending
+from customer_spending
+
+)
+select cs.customer_id,cs.customer_name,cs.total_spending,av.overall_avg_customerspending
+from customer_spending as cs cross join  customer_average_spending as av
+where cs.total_spending>av.overall_avg_customerspending;
+
+
+
+Question 5- Which customers have placed multiple orders but have low average order?
+
+Query
+
+with multiple_orders_customers as(
+select c.customer_id,c.customer_name ,count(o.order_id) as total_orders,
+avg(total_amt) as customer_avg_ordervalue
+from food_delivery.customers as c join
+food_delivery.orders as o
+on c.customer_id=o.customer_id
+group by c.customer_id
+
+),
+average_aov as (
+select avg(total_amt) as avg_total_amt
+from food_delivery.orders
+
+)
+select mo.customer_id,
+       mo.customer_name,
+       mo.total_orders,
+       mo.customer_avg_ordervalue
+from multiple_orders_customers as mo
+cross join average_aov as av
+where mo.total_orders>2
+and mo.customer_avg_ordervalue<av.avg_total_amt;s

@@ -1,0 +1,55 @@
+Question 1- What is the distribution of payment methods?
+
+Query
+
+select payment_method,count(*) from 
+payments group by  payment_method;
+
+
+
+Question 2- Which payment method generates the highest revenue?
+
+Query
+
+select p.payment_method,
+sum(total_amt) as highest_revenue
+from payments as p join
+orders as o on
+p.order_id=o.order_id
+group by payment_method
+order by highest_revenue desc limit 1;
+
+
+
+Question 3- Which Restaurants have the average customer rating less than 4?
+
+Query
+
+select o.restaurant_id,o.customer_id,
+round(avg(rating)) as average_customer_rating
+from orders as o join
+ratings as r on
+o.order_id=r.order_id
+group by rating_id
+having average_customer_rating<4;
+
+
+Question 4- Which restaurants have high revenue but low customer rating?
+
+with restaurants_revenue as (
+select restaurant_id,sum(total_amt) as 
+high_revenue from orders 
+group by restaurant_id
+order by high_revenue desc
+),
+
+less_rating as (
+select rating_id,rating,o.restaurant_id from ratings as r
+join orders as o on r.order_id=o.order_id
+
+)
+select rr.restaurant_id,rr.high_revenue ,lr.rating 
+from restaurants_revenue as rr join less_rating as lr
+on rr.restaurant_id=lr.restaurant_id
+having rating<4;
+

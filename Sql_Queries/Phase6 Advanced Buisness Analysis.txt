@@ -1,0 +1,202 @@
+
+Question 1- Who are the top 10 customers based on lifetime value?
+
+Query
+
+with highest_revenue as(
+select c.customer_id,c.customer_name,
+sum(total_amt) as total_revenue
+from customers as c join
+orders as o on
+c.customer_id=o.customer_id
+group by c.customer_id,c.customer_name
+order by total_revenue desc
+
+),
+ranked_ones as (
+select customer_id,customer_name,total_revenue,
+row_number() over(order by total_revenue desc) as rwn
+from highest_revenue
+
+)
+select customer_id,customer_name,total_revenue,rwn
+from ranked_ones
+where rwn<=10
+order by rwn asc limit 10;
+
+
+Question 2 - Rank the restaurants within each category based on revenue?
+
+Query
+
+with restaurant_category_revenue as (
+select mi.category,o.restaurant_id,
+sum(oi.subtotal) as revenue
+from orders as o join orderitems as oi
+on o.order_id = oi.order_id
+join menuitems as mi on mi.item_id = oi.item_id
+group by o.restaurant_id,mi.category
+)
+
+select restaurant_id,category,revenue ,
+rank() over(partition by category order by revenue desc) as rnk
+from restaurant_category_revenue
+
+order by rnk,category;
+
+
+Question 3 - Find the top 3 menu items for each restaurant?
+
+Query
+
+  select * from 
+
+	   (select mi.restaurant_id
+	   ,mi.item_id,
+        mi.item_name,
+        sum(oi.quantity) as total_quantity,
+
+     row_number() 
+     over(partition by restaurant_id order by sum(oi.quantity) desc )
+     as rwn
+     from menuitems as mi 
+     join orderitems as oi
+     on mi.item_id=oi.item_id 
+     group by mi.restaurant_id,mi.item_id ) 
+     as t
+     where rwn<=3;
+
+
+Question 4 -identify the customers who are frequent but low value customers ?
+
+Query
+
+
+With customers_revenue AS (
+    Select
+        c.customer_id,
+        c.customer_name,
+        SUM(o.total_amt) AS total_revenue
+    From customers AS c
+    Join orders AS o
+        On c.customer_id = o.customer_id
+    Group by c.customer_id, c.customer_name
+),
+
+avg_revenue as (
+    Select
+        avg(total_revenue) AS avg_revenue
+    From customers_revenue
+),
+
+customers_orders AS (
+    Select
+        c.customer_id,
+        c.customer_name,
+        Count(o.order_id) AS total_orders
+    From customers AS c
+    Join orders AS o
+        on c.customer_id = o.customer_id
+    group by c.customer_id, c.customer_name
+),
+
+avg_orders AS (
+    Select
+        avg(total_orders) AS avg_orders
+    From customers_orders
+)
+
+Select
+    cr.customer_id,
+    cr.customer_name,
+    cr.total_revenue,
+    co.total_orders,
+    ar.avg_revenue,
+    ao.avg_orders,
+    Case
+        WHENcr.total_revenue > ar.avg_revenue
+             AND co.total_orders > ao.avg_orders
+            THEN 'VIP'
+
+        WHEN cr.total_revenue > ar.avg_revenue
+             AND co.total_orders < ao.avg_orders
+            THEN 'Occasional High Value'
+
+        WHEN cr.total_revenue < ar.avg_revenue
+             AND co.total_orders > ao.avg_orders
+            THEN 'Frequent Low Value'
+
+        WHEN cr.total_revenue < ar.avg_revenue
+             AND co.total_orders < ao.avg_orders
+            THEN 'Low Engagement'
+
+        ELSE 'Average'
+    END AS customer_identification
+
+from customers_revenue AS cr
+Join customers_orders AS co
+    on cr.customer_id = co.customer_id
+Cross join avg_revenue AS ar
+Cross join avg_orders AS ao;
+
+
+
+Question 5 - Which restaurants should the buisness priotize for improvent?
+
+WITH restaurants_revenue AS (
+    SELECT
+        r.restaurant_id,
+        r.restaurant_name,
+        SUM(o.total_amt) AS total_revenue
+    FROM restaurants AS r
+    JOIN orders AS o
+        ON r.restaurant_id = o.restaurant_id
+    GROUP BY r.restaurant_id, r.restaurant_name
+),
+
+avg_revenue AS (
+    SELECT
+        AVG(total_revenue) AS avg_revenue
+    FROM restaurants_revenue
+),
+
+restaurants_rating AS (
+    SELECT
+        r.restaurant_id,
+        r.restaurant_name,
+        AVG(rt.rating) AS avg_rating
+    FROM restaurants AS r
+    JOIN orders AS o
+        ON r.restaurant_id = o.restaurant_id
+    JOIN ratings AS rt
+        ON o.order_id = rt.order_id
+    GROUP BY r.restaurant_id, r.restaurant_name
+),
+
+avg_rating AS (
+    SELECT
+        AVG(avg_rating) AS avg_rating
+    FROM restaurants_rating
+)
+
+SELECT
+    rr.restaurant_id,
+    rr.restaurant_name,
+    rr.total_revenue,
+    ROUND(rt.avg_rating, 2) AS avg_rating,
+
+    CASE
+        WHEN rr.total_revenue > ar.avg_revenue
+             THEN 'Customer Experience Risk'
+
+        WHEN rr.total_revenue < ar.avg_revenue
+             THEN 'Needs Improvement'
+    END AS restaurant_identification
+
+FROM restaurants_revenue AS rr
+JOIN restaurants_rating AS rt
+    ON rr.restaurant_id = rt.restaurant_id
+CROSS JOIN avg_revenue AS ar
+CROSS JOIN avg_rating AS at
+
+WHERE rt.avg_rating < at.avg_rating;

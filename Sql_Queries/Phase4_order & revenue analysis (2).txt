@@ -1,0 +1,57 @@
+Question 1- What is the average order value that customers is placing?
+
+Query
+
+select avg(total_amt) as avg_order_value
+from orders;
+
+
+Question 2- What are the top 10 largest orders?
+
+Query
+
+select * from
+(select order_id,order_date,
+sum(total_amt) as largest_orders,
+rank() over(order by sum(total_amt) desc) as rnk
+from orders
+group by order_id
+) as highest_orders
+where  rnk<=10;
+
+
+Question 3- How does revenue vary by month?
+
+select monthname(order_date) as months ,year(order_date)
+,sum(total_amt)
+as monthly_order_revenue
+from orders
+group by months,month(order_date),year(order_date)
+order by month(order_date);
+
+
+Question 4- Which day of the week generates the most orders?
+
+select dayname(order_date) as peak_days,
+count(*) as number_of_orders
+from orders
+group by peak_days
+order by number_of_orders desc;
+
+
+Question 5- What are the peak ordering hours?
+
+select hour(order_time) as peak_ordering_hrs,
+count(*) as number_of_orders
+from orders
+group by peak_ordering_hrs
+order by number_of_orders desc;
+
+Question 6- What is the average order value by a restaurant?
+
+select r.restaurant_id,r.restaurant_name,
+avg(total_amt) as avg_order_value
+from restaurants as r join
+orders as o on
+r.restaurant_id=o.restaurant_id
+group by restaurant_id;

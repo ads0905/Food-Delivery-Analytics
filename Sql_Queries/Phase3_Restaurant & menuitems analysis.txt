@@ -1,0 +1,130 @@
+Question 1 - Which are the top  5 restaurants which generates the highest total revenue?
+
+Query
+
+with restaurants_total_revenue as (
+select r.restaurant_id,r.restaurant_name,r.rest_location
+,sum(total_amt) as total_revenue
+from food_delivery.restaurants as r join
+food_delivery.orders as o
+on r.restaurant_id=o.restaurant_id
+group by restaurant_id,restaurant_name
+order by restaurant_id asc
+
+),
+ranked_restaurants as (
+select restaurant_id,restaurant_name,rest_location,total_revenue
+,rank() over(order by total_revenue desc) as rnk
+from restaurants_total_revenue
+
+)
+
+select restaurant_id,restaurant_name,rest_location,total_revenue,rnk
+from ranked_restaurants
+where rnk <=5
+order by rnk asc limit 5;
+
+
+Question 2- Which are the restaurants who generates above then-average  total_revenue?
+
+Query
+ 
+with restaurants_total_revenue as (
+select r.restaurant_id,r.restaurant_name,r.rest_location
+,sum(total_amt) as total_revenue
+from food_delivery.restaurants as r join
+food_delivery.orders as o
+on r.restaurant_id=o.restaurant_id
+group by restaurant_id,restaurant_name
+order by restaurant_id asc
+
+),
+
+average_revenue as (
+select avg(total_revenue) as avg_revenue from
+restaurants_total_revenue
+
+)
+select rs.restaurant_id,rs.restaurant_name,rs.rest_location,rs.total_revenue
+,av.avg_revenue
+from restaurants_total_revenue as rs cross join
+average_revenue as av
+where rs.total_revenue > av.avg_revenue;
+
+
+
+Question 3- Which restaurants  have high order volume but relatively low revenue?
+
+Query
+
+with order_volume as(
+select r.restaurant_id,r.restaurant_name,r.rest_location,
+count(*) as total_orders,sum(total_amt) as restaurant_revenue from food_delivery.restaurants as r
+join food_delivery.orders as o
+on r.restaurant_id = o.restaurant_id
+group by r.restaurant_id,restaurant_name
+order by total_orders desc
+),
+
+low_revenue as (
+select avg(restaurant_revenue) as avg_total_revenue
+from order_volume
+
+),
+
+avg_order as (
+select avg(total_orders) as average_orders_count
+from order_volume
+
+)
+
+select ov.restaurant_id,ov.restaurant_name,ov.total_orders,
+ov.restaurant_revenue,av.average_orders_count,lv.avg_total_revenue
+from order_volume as ov cross join
+avg_order as av cross join low_revenue as lv
+where ov.total_orders > av.average_orders_count
+and
+ov.restaurant_revenue < lv.avg_total_revenue;
+
+
+Question 4- Which restaurants receives the highest number of orders?
+
+Query
+
+select r.restaurant_id,r.restaurant_name,r.rest_location,
+count(*) as total_orders from food_delivery.restaurants as r
+join food_delivery.orders as o
+on r.restaurant_id = o.restaurant_id
+group by r.restaurant_id,restaurant_name
+order by total_orders desc;
+
+
+Question 5- Which menu items are the most frequently ordered?
+
+Query
+
+select oi.orderitem_id,oi.order_id,oi.item_id,mi.item_name,
+sum(quantity) as frequently_asked
+from orderitems as oi join
+menuitems as mi
+on oi.item_id = mi.item_id
+group by oi.orderitem_id,oi.order_id,oi.item_id
+order by frequently_asked desc;
+
+
+Qus 6  Which menu items generate the highest revenue?
+
+Query
+
+select * from
+( select oi.item_id,mi.item_name,
+sum(oi.subtotal) as revenue,
+row_number()
+over(order by sum(oi.subtotal)  desc) as rwn
+from orderitems as oi
+join
+menuitems as mi on
+oi.item_id = mi.item_id
+group by oi.item_id,mi.item_name
+) as ranked_items
+where rwn<=5;
