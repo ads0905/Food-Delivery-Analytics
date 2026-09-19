@@ -570,6 +570,10 @@ Segmentation](Screenshots/case_restaurant_segmentation_output1.png)
 -   Only 25% of orders contain payment, delivery-partner and rating
     records together.
 
+### Analysis (Google Sheets)
+https://docs.google.com/spreadsheets/d/1v2hU3vOvV9QAQQoET6Mk0SmjGCvs1QQps_zWGKcNxBQ/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1S4kHTMgXDsODzL5ktUBeam3p0nadVqEiA12TlFvGfKc/edit?usp=drive_link
+
 ------------------------------------------------------------------------
 
 # 💡 Overall Business Recommendations
