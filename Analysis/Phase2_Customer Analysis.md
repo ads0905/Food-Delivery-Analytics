@@ -46,11 +46,11 @@ through group by and use limit for only 10 customers.
 
 Showcasing who are those to 10 customers according to their number of orders.
 
-![Query output - part 1](../Screenshots1/top 10_customers_output1.png)
+![Query output - part 1](../Screenshots1/top10_customers_output1.png)
 
 
 
-![Query output - part 2](../Screenshots1/top 10_customers_output2.png)
+![Query output - part 2](../Screenshots1/top10_customers_output2.png)
 
 
 ## Insights
@@ -108,7 +108,7 @@ where rnk<=3;
 
 ## Output
 
-![Query output](../Screenshots1/top 3_customers_output1.png)
+![Query output](../Screenshots1/top3_customers_output1.png)
 
 
 ## Insights
@@ -158,10 +158,10 @@ having avg_order_value > 1500;
 
 There are only 17 almost around (1.11%) customers from noida whose average order value is above than 1500.
 
-![Query output - part 1](../Screenshots1/avg_order_value_noida output1.png)
+![Query output - part 1](../Screenshots1/avg_order_value_noida_output1.png)
 
 
-![Query output - part 2](../Screenshots1/avg_order_value_noida output2.png)
+![Query output - part 2](../Screenshots1/avg_order_value_noida_output2.png)
 
 
 ## Insight
@@ -287,9 +287,9 @@ and mo.customer_avg_ordervalue < av.avg_total_amt;
 
 ## Output
 
-![Query output - part 1](../Screenshots1/multiple_orders output 1.png)
+![Query output - part 1](../Screenshots1/multiple_orders_output1.png)
 
-![Query output - part 2](../Screenshots1/multiple_orders output 2.png)
+![Query output - part 2](../Screenshots1/multiple_orders_output2.png)
 
 
 ## Insights
