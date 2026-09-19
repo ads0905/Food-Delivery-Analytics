@@ -380,7 +380,7 @@ The query identified 30 duplicate customer records.
 
 * A sample of the duplicate records is shown below:
 
-![Duplicate customer output](../Screenshots1/Customer_duplicate%20records.png)
+![Duplicate customer output](../Screenshots1/Customer_duplicate records.png)
 
 Note: The complete result contains 30 duplicate records.
 
