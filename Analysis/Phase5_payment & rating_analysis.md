@@ -20,9 +20,9 @@ payments group by  payment_method;
 
 ## Output
 
-f![Query output]
-(screenshots1
-payment_method_output.png)
+## Output
+
+![Query output](../Screenshots1/payment_method_output.png)
 
 
 ## Insights 
@@ -71,9 +71,7 @@ order by to sort the records according highest_revenue in desc.
 
 ## Output
 
-f![Query output] 
-(screenshots1
-highest_payment_revenue_output.png)
+![Query output](../Screenshots1/highest_payment_revenue_output.png)
 
 
 ## Insights
@@ -119,14 +117,9 @@ and using having clause to filter ratinh less than 4.
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-avg_rating_output1.png)
+![Query output - part 1](../Screenshots1/avg_rating_output1.png)
 
-
-![Query output - part 2]
-(screenshots1
-avg_rating_output2.png)
+![Query output - part 2](../Screenshots1/avg_rating_output2.png)
 
 
 ## Insights 
@@ -181,14 +174,9 @@ having rating<4;
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-revenue_low_rating_output1.png)
+![Query output - part 1](../Screenshots1/revenue_low_rating_output1.png)
 
-
-![Query output - part 2]
-(screenshots1
-revenue_low_rating_output2.png)
+![Query output - part 2](../Screenshots1/revenue_low_rating_output2.png)
 
 ## Insights
 

@@ -46,9 +46,7 @@ restaurants.
 
 We have got top 5 restaurants,listed below.
 
-![Query output]
-(screenshots1
-top5_restaurants.png)
+![Query output](../Screenshots1/top5_restaurants.png)
 
 
 ## Insights
@@ -107,14 +105,10 @@ where rs.total_revenue > av.avg_revenue;
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-restaurants_avg output1.png)
+![Query output - part 1](../Screenshots1/restaurants_avg%20output1.png)
 
 
-![Query output - part 2]
-(screenshots1
-restaurants_avg output2.png)
+![Query output - part 2](../Screenshots1/restaurants_avg%20output2.png)
 
 
 ## Insights
@@ -184,15 +178,9 @@ ov.restaurant_revenue < lv.avg_total_revenue;
 ## Output
 
 
-![Query output - part 1]
-(screenshots1
-query3 output1.png)
+![Query output - part 1](../Screenshots1/query3%20output1.png)
 
-
-![Query output - part 2]
-(screenshots1
-queryr3 output2.png)
-
+![Query output - part 2](../Screenshots1/queryr3%20output2.png)
 
 ## Insights
 
@@ -242,14 +230,11 @@ to low number of orders.
 
 
 ## Output
-![Query output - part 1]
-(screenshots1
-highest_orders output1.png)
+
+![Query output - part 1](../Screenshots1/highest_orders%20output1.png)
 
 
-![Query output - part 2]
-(screenshots1
-highest_orders output2.png)
+![Query output - part 2](../Screenshots1/highest_orders%20output2.png)
 
 
 ## Insights
@@ -307,14 +292,9 @@ sorting the restaurant with max . menuitems.
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-frequently_menuitems.png)
+![Query output - part 1](../Screenshots1/frequently_menuitems.png)
 
-
-![Query output - part 2]
-(screenshots1
-frequently_menuitems1.png)
+![Query output - part 2](../Screenshots1/frequently_menuitems1.png)
 
 
 ## Insights
@@ -370,9 +350,7 @@ where rwn<=5;
 
 ## Output
 
-f![Query output]
-(screenshots1
-five_max_menuitems_output.png)
+![Query output](../Screenshots1/five_max_menuitems_output.png)
 
 
 ## Insights

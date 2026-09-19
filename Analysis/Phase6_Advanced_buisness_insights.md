@@ -43,14 +43,9 @@ for getting top 10 customers.
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-customer_lifetime_value_output1.png)
+![Query output - part 1](../Screenshots1/customer_lifetime_value_output1.png)
 
-
-![Query output - part 2]
-(screenshots1
-customer_lifetime_value_output2.png)
+![Query output - part 2](../Screenshots1/customer_lifetime_value_output2.png)
 
 
 ## Insights
@@ -110,19 +105,11 @@ and order by to male revenue in desc order to get highest revenue first.
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-customer_lifetime_value_output1.png)
+![Query output - part 1](../Screenshots1/customer_lifetime_value_output1.png)
 
+![Query output - part 2](../Screenshots1/customer_lifetime_value_output2.png)
 
-![Query output - part 2]
-(screenshots1
-customer_lifetime_value_output2.png)
-
-
-![Query output - part 3]
-(screenshots1
-customer_lifetime_value_output3.png)
+![Query output - part 3](../Screenshots1/customer_lifetime_value_output3.png)
 
 
 ## Insights
@@ -175,15 +162,9 @@ group by to group the rows.
 
 
 ## Output
+![Query output - part 1](../Screenshots1/3menuitems_restaurant_output1.png)
 
-![Query output - part 1]
-(screenshots1
-3menuitems_restaurant_output1.png)
-
-
-![Query output - part 2]
-(screenshots1
-3menuitems_restaurant_output2.png)
+![Query output - part 2](../Screenshots1/3menuitems_restaurant_output2.png)
 
 
 ## Insights
@@ -297,14 +278,9 @@ Cross join avg_orders AS ao;
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-case_customer_segmentation_output1.png)
+![Query output - part 1](../Screenshots1/case_customer_segmentation_output1.png)
 
-
-![Query output - part 2]
-(screenshots1
-case_customer_segmentation_output2.png)
+![Query output - part 2](../Screenshots1/case_customer_segmentation_output2.png)
 
 
 ## Insights
@@ -403,14 +379,9 @@ WHERE rt.avg_rating < at.avg_rating;
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-case_restaurant_segmentation_output1.png)
+![Query output - part 1](../Screenshots1/case_restaurant_segmentation_output1.png)
 
-
-![Query output - part 2]
-(screenshots1
-case_restaurant_segmentation_output2.png)
+![Query output - part 2](../Screenshots1/case_restaurant_segmentation_output2.png)
 
 
 ## Insights

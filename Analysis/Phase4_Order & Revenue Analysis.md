@@ -18,11 +18,11 @@ from orders;
 1. Uisng avg() fnc which is used to calculate the average.
 
 
+
+
 ## Output
 
-f![Query output]
-(screenshots1
-avg_order_value_output.png)
+![Query output](../Screenshots1/avg_order_value_output.png)
 
 
 ## Insights 
@@ -65,14 +65,10 @@ to get the highest number of orders first.
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-top_10_highest_orders_output1.png)
+![Query output - part 1](../Screenshots1/top_10_highest_orders_output1.png)
 
 
-![Query output - part 2]
-(screenshots1
-top_10_highest_orders_output11.png)
+![Query output - part 2](../Screenshots1/top_10_highest_orders_output2.png)
 
 
 ## Insight
@@ -119,20 +115,13 @@ order by month(order_date);
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-monthly_revenue_output1.png)
+## Output
 
+![Query output - part 1](../Screenshots1/monthly_revenue_output1.png)
 
-![Query output - part 2]
-(screenshots1
-monthly_revenue_output2.png)
+![Query output - part 2](../Screenshots1/monthly_revenue_output2.png)
 
-
-![Query output - part 3]
-(screenshots1
-monthly_revenue_output3.png)
-
+![Query output - part 3](../Screenshots1/monthly_revenue_output3.png)
 
 ## Insights
 
@@ -176,14 +165,11 @@ order by number_of_orders desc;
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-peak_days_orders_output1.png)
+## Output
 
+![Query output - part 1](../Screenshots1/peak_days_orders_output1.png)
 
-![Query output - part 2]
-(screenshots1
-peak_days_orders_output2.png)
+![Query output - part 2](../Screenshots1/peak_days_orders_output2.png)
 
 
 ## Insights
@@ -231,9 +217,9 @@ order by number_of_orders desc;
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-peak_hrs_orders_output.png)
+## Output
+
+![Query output - part 1](../Screenshots1/peak_hrs_orders_output.png)
 
 
 ## Insights
@@ -281,15 +267,11 @@ group by restaurant_id;
 
 ## Output
 
-![Query output - part 1]
-(screenshots1
-restaurants_aov_output1.png)
+## Output
 
+![Query output - part 1](../Screenshots1/restaurants_aov_output1.png)
 
-![Query output - part 2]
-(screenshots1
-restaurants_aov_output2.png)
-
+![Query output - part 2](../Screenshots1/restaurants_aov_output2.png)
 
 ## Insights
 
