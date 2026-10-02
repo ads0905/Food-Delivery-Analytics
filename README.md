@@ -416,8 +416,7 @@ implementation focusing primarily on:
 
   **Low             Low               Low               Limited activity
   Engagement**                                          and value
-
-  **Average**       Around benchmark  Around benchmark  Middle segment
+     
   -----------------------------------------------------------------------
 
 The segmentation is implemented using SQL `CASE WHEN` logic by comparing
@@ -517,8 +516,7 @@ Value](Screenshots/customer_lifetime_value_output1.png)
 
 ### Restaurant Segmentation
 
-![Restaurant
-Segmentation](Screenshots/case_restaurant_segmentation_output1.png)
+https://github.com/ads0905/Food-Delivery-Analytics/blob/9b3023d3afd71c04e1584a743fe48bef89d0991e/Screenshots1/case_restaurant_segmentation_output1.png
 
 ### Monthly Revenue
 
