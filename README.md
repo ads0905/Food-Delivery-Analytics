@@ -93,9 +93,9 @@ project's ER diagram.
 
 ## 🧩 ER Diagram
 
-Add the ER diagram to your repository and keep the following section:
 
-[Food_delivery Analysis](<../OneDrive/Desktop/Food_Delivery Analysis/Database/EER Diagram>)
+
+![Food Delivery ER Diagram](Database/ER%20Diagram%20Food%20Delivery%20Database.png)
 
 
 ------------------------------------------------------------------------
