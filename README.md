@@ -519,7 +519,9 @@ https://github.com/ads0905/Food-Delivery-Analytics/blob/9b3023d3afd71c04e1584a74
 
 ### Monthly Revenue
 
-![Monthly Revenue](Screenshots/monthly_revenue_output1.png)
+https://github.com/ads0905/Food-Delivery-Analytics/blob/26fbbfcc8aa699c193c64b7dd3c9ef02bc2f6fb7/Screenshots1/monthly_revenue_output1.png
+
+
 
 ------------------------------------------------------------------------
 
