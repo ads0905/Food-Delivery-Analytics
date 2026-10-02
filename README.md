@@ -511,8 +511,7 @@ https://github.com/ads0905/Food-Delivery-Analytics/blob/5b74fab50d223e191ce9e7eb
 
 ### Customer Lifetime Value
 
-![Customer Lifetime
-Value](Screenshots/customer_lifetime_value_output1.png)
+https://github.com/ads0905/Food-Delivery-Analytics/blob/fb92f03b3e93a102513c70c69fc9338d36d13ef6/Screenshots1/customer_lifetime_value_output1.png
 
 ### Restaurant Segmentation
 
