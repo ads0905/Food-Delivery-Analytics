@@ -93,9 +93,7 @@ project's ER diagram.
 
 ## 🧩 ER Diagram
 
-
-
-![Food Delivery ER Diagram](Database/ER%20Diagram%20Food%20Delivery%20Database.png)
+Database/EER Diagram/Latest EER diagram image.png
 
 
 ------------------------------------------------------------------------
