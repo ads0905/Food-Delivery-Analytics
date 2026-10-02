@@ -508,8 +508,7 @@ This project demonstrates practical SQL skills including:
 
 ### Customer Segmentation
 
-![Customer
-Segmentation](Screenshots/case_customer_segmentation_output1.png)
+https://github.com/ads0905/Food-Delivery-Analytics/blob/5b74fab50d223e191ce9e7eb217cf8e44ccd4a24/Screenshots1/case_customer_segmentation_output1.png
 
 ### Customer Lifetime Value
 
