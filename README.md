@@ -93,7 +93,7 @@ project's ER diagram.
 
 ## 🧩 ER Diagram
 
-Database/EER Diagram/Latest EER diagram image.png
+https://github.com/ads0905/Food-Delivery-Analytics/blob/28db472d71dc1607d7c3dfc4ad5ffb797fe9ff53/Database/EER%20Diagram/Latest%20EER%20diagram%20image.png
 
 
 ------------------------------------------------------------------------
